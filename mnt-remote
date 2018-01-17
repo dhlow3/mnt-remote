@@ -1,0 +1,28 @@
+#!/bin/bash
+# mount/unmount drive over sshfs
+
+function usage
+{
+    echo -e "Usage: " `basename "$0"` " user@hostaddress\n"\
+    "      " `basename "$0"` " -u\n\n"\
+    "user@hostaddress\tmount drive on host address\n"\
+    "-u\t\t\tunmount remote drive"
+}
+
+# Main
+
+if [ "$1" = "--help" ]; then
+    usage
+
+elif [ "$1" = "-u" ]; then
+    sudo fusermount -u ~/remote
+
+elif [ "$1" ]; then
+    user="$(cut -d '@' -f1 <<< $1)"
+    address="$(cut -d '@' -f2 <<< $1)"
+    sudo sshfs $user@$address:/home/$user/ ~/remote -o allow_other
+
+else
+    usage
+
+fi
