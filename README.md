@@ -20,6 +20,5 @@ Ubuntu 16.04.2 LTS
 3. type mnt-remote -u to unmount drive
 
 ## Notes
-* script assumes there is a ~/remote directory on the client computer
- * change script if you'd rather the mount point be in a different directory
+* script assumes there is a ~/remote directory on the client computer, if a different mount point is preferred replace ~/remote with the name of the preferred directory
 * script assumes the entry point on the remote drive will be /home/user
